@@ -1,7 +1,7 @@
 class Situation {
     constuctor(name, notes) {
-        this.name;
-        this.notes;
+        this.name = name;
+        this.notes = notes;
     }
 }
 
