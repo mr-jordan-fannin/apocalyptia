@@ -1,4 +1,4 @@
-function loadFile(file, target) {
+function load(file, target) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', file, true);
     xhr.onreadystatechange = function() {

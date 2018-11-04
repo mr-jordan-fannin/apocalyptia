@@ -8,7 +8,7 @@ class Ability {
 }
 
 const charismatic = new Ability('Charismatic', '+1 Socialize for First Impressions.', 3, 3);
-const favoriteWeapon = new Ability('Favorite Weapon', 'Botch is only a Fail with this one weapon', 1, 3);
+const favoriteWeapon = new Ability('Favorite Weapon', 'Botch is only a Fail with this one weapon.', 1, 3);
 const hyperImmunity = new Ability('Hyper Immunity', '+1 C to resist Diseases and Drug effects.', 3, 3);
 const packMentality = new Ability('Pack Mentality', '+1 ATK at same target a Comrade ATKs.', 1, 3);
 const specialize = new Ability('Specialize*', '+1 to a specific Skill Specialty.', 1, 3);
