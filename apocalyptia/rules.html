@@ -153,7 +153,7 @@
                     <br>
                     Health = [C x 2]
                     <br>
-                    Pain = [C + D] max
+                    Pain = 0
                     <br>
                     Actions = [(A + B) / 2]
                     <br>
@@ -617,14 +617,6 @@
                 <div class="rule-header">
                     Constitution Properties
                 </div>
-                <div id="pain" class="rule">
-                    <div class="rule-header">
-                        Pain
-                    </div>
-                    <div>
-                        = [C + D]. The max Pain that you can take before falling unconscious. Pain is caused by DMG and deprivation of Needs.
-                    </div>
-                </div>
                 <div id="block" class="rule">
                     <div class="rule-header">
                         Block
@@ -638,7 +630,7 @@
                         Health (HP)
                     </div>
                     <div>
-                        = [C x 2]. This is the amount of DMG you can take. You fall Prone and start Bleeding at [HP / 2] and remain so until healed. Go Unconscious at 0 HP and die at [-C] HP. HP is recovered by 1 per day of rest with a [C vs DMG] roll.
+                        = [C x 2]. This is the amount of DMG you can take. Go Unconscious at 0 HP and die at [-C] HP. HP is recovered by 1 per day with a [C vs DMG] roll.
                     </div>
                 </div>
             </div>
@@ -733,13 +725,13 @@
                     Health (HP)
                 </div>
                 <div>
-                    = [C x 2]. HP is temporarily reduced when you take DMG. You fall Prone and start Bleeding at [HP / 2] and remain so until healed. Go Unconscious at 0 HP and die at [-C] HP.
+                    = [C x 2]. HP is temporarily reduced when you take DMG. Go Unconscious at 0 HP and die at [-C] HP.
                     <div class="rule">
                         <div class="rule-header">
                             Bleeding
                         </div>
                         <div>
-                            When your HP drops below [HP / 2], you begin losing 1HP per minute. Roll [C vs total DMG] once per minute to stop naturally or [Medicine(First-Aid) vs total DMG] with a bandage.
+                            Starts when DMG drops you to [HP / 2]. 1 DMG per minute. Roll [C vs DMG] once per minute to stop Bleeding naturally. Roll [Medicine(First-Aid) vs DMG] to stop Bleeding with a bandage.
                         </div>
                     </div>
                     <div class="rule">
@@ -747,7 +739,7 @@
                             Recovery
                         </div>
                         <div>
-                            After a day of rest, roll [C vs total DMG] to heal 1HP. On a Fail, take 1 DMG from infection.
+                            Roll [C vs DMG] once per day to heal 1HP. On a Fail, take 1 DMG from infection.
                         </div>
                     </div>
                     <div class="rule">
@@ -765,7 +757,7 @@
                 Damage (DMG)
                 </div>
                 <div>
-                    ATKs do DMG to HP = [Weapon DMG + Success]. All DMG adds Pain and causes Bleeding. If [DMG &gt C] you fall Prone.
+                    ATKs do DMG to HP = [Weapon DMG + Success]. DMG adds Pain penalties to all rolls and Speed. If one ATK does [DMG &gt C], you fall Prone.
                     <div class="rule">
                         <div class="rule-header">
                             Armor (DR)
@@ -787,7 +779,7 @@
                             Pain
                         </div>
                         <div>
-                            -1 to all rolls and Speed. Go unconscious if [Pain &gt (C+D)]
+                            -1 to all rolls and Speed.
                         </div>
                     </div>
                 </div>
@@ -1078,7 +1070,7 @@
                     Bleeding
                 </div>
                 <div id="bleeding-notes">
-                    1 DMG per min. Roll [(Medicine or C) vs DMG] to stop.
+                    Starts when DMG drops you to [HP / 2]. 1 DMG per minute. Roll [C vs DMG] once per minute to stop Bleeding naturally. Roll [Medicine(First-Aid) vs DMG] to stop Bleeding with a bandage.
                 </div>
             </div>
             <div id="burning-rule" class="rule">
@@ -1158,7 +1150,7 @@
                     Pain
                 </div>
                 <div id="pain-notes">
-                    -1 per Pain to all rolls and Speed. Pain fades as DMG heals. Some Pain fades based on the source. Unconscious if [Pain &gt (C + D)].
+                    -1 per Pain to all rolls and Speed. Pain fades as DMG heals. Some Pain fades based on the source.
                 </div>
             </div>
             <div id="prone-rule" class="rule">
