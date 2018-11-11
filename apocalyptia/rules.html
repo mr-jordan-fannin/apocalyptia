@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
+
     <style>
         * {
             margin: 0;
@@ -18,12 +20,37 @@
         body {
             background: black;
         }
+        nav {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 20vw;
+        }
+        nav button {
+            width: 100%;
+            height: 10vh;
+            background: black;
+            color: white;
+            font-size: 3ch;
+            overflow-x: hidden;
+        }
+        main {
+            position: absolute;
+            left: 20vw;
+            top: 0;
+            height: 100vh;
+            width: 78vw;
+            margin: 0 auto 0 auto;
+        }
         .chapter {
-            background: #555;
             border: 1px solid black;
             color: white;
-            margin: 0 auto 10vh auto;
+            margin: 0 auto 5vh auto;
             padding: 2%;
+        }
+        div[id$='section'] {
+            display: none;
         }
         .section-title {
             font-size: 1.5rem;
@@ -48,1183 +75,1223 @@
             text-align: center;
         }
     </style>
+
+    <script>
+        function toggle(name) {
+            var section = document.getElementById(name+'-section');
+            var button = document.getElementById(name+'-button');
+            if (section.style.display === 'block') {
+                section.style.display = 'none';
+                button.style.background = 'black'
+            }
+            else {
+                section.style.display = 'block';
+                button.style.background = 'green';
+            }
+        }
+    </script>
+
     <body>
-        
-        <div id="dice-section" class="chapter">
-            <div class="section-title">
-                DICE RULES
+
+        <nav>
+            <div>
+                <button id="dice-button" onclick="toggle('dice')">Dice</button>
+            </div>
+            <div>
+                <button id="creation-button" onclick="toggle('creation')">Creation</button>
+            </div>
+            <div>
+                <button id="traits-button" onclick="toggle('traits')">Traits</button>
+            </div>
+            <div>
+                <button id="skills-button" onclick="toggle('skills')">Skills</button>
+            </div>
+            <div>
+                <button id="properties-button" onclick="toggle('properties')">Properties</button>
+            </div>
+            <div>
+                <button id="combat-button" onclick="toggle('combat')">Combat</button>
+            </div>
+            <div>
+                <button id="maneuvers-button" onclick="toggle('maneuvers')">Maneuvers</button>
+            </div>
+            <div>
+                <button id="situations-button" onclick="toggle('situations')">Situations</button>
+            </div>
+        </nav>
+
+        <main>
+
+            <div id="dice-section" class="chapter">
+                <div class="section-title">
+                    DICE RULES
+                </div>
+                <div id="dice-rules" class="rule">
+                    When you want to attempt a difficult action, roll one six-sided die (“d6”) to decide a fair outcome. Added to the d6 roll is the Character’s score in a Trait, Instinct, or Skill, depending on the action. Finally, add or subtract from the roll any modifiers relevant to the circumstances, as determined by the Game Narrator (“GN”). The formula for a roll is always shown in [brackets]. Calculate the Result of a d6 roll as follows:
+                    <div class="centered">
+                        [d6 roll + Score &#177; Modifiers] = Result
+                    </div>
+                </div>
+                <div id="difficulty" class="rule">
+                    <div class="rule-header">Difficulty (#)</div> The Result of your roll must equal or exceed to the Difficulty number to be successful. Difficulties are indicated by the # symbol. The GN or an opposing roll set the # for your rolls.
+                </div>
+                <div id="success" class="rule">
+                    <div class="rule-header">Success (S)</div> If [Result &gt= #], the attempted action worked. Re-roll ties on opposed rolls. The degree of Success is important for some rolls.
+                    <div id="rote-actions" class="rule">
+                        <div class="rule-header">Rote Actions</div> If your [(Score + Modifiers) &gt= #] before the d6 roll, and you can take your time, you Succeed automatically.
+                    </div>
+                    <div id="cooperation" class="rule">
+                        <div class="rule-header">Cooperation</div> If Characters want to help each other perform a task, they all roll at once but only the best roll is used, unless someone Botches (see below) in which case the Botch is used.
+                    </div>
+                </div>
+                <div id="failure" class="rule">
+                    <div class="rule-header">Fail (F)</div> If [Result &lt #], the attempted action did not work.
+                </div>
+                <div id="explode" class="rule">
+                    <div class="rule-header">Explode (6)</div> If a 6 is rolled, re-roll it again and again as long as 6's continue. Add all of these d6 rolls together, then calculate your Result.
+                </div>
+                <div id="botch" class="rule">
+                    <div class="rule-header">Botch (1)</div> If you roll 1 on a die, re-roll to check for a Botch. If a 1 is rolled again, you Botch, meaning you fail very badly. For any other number, your d6 roll is just a 1. Bonus rolls from Exploding dice do not Botch.
+                    <br>
+                    The GN is given a great deal of lattitude to be creative when determining the effects of Botching under various circumstances, but they should always be fair. Whenever a Character Botches, they get +1 Experience Point because we learn the most from our greatest failures.
+                </div>
+                <div id="tables" class="rule">
+                    <div class="rule-header">Tables</div> Number column headers (d6, d66, d666) indicate that you must roll one, two, or three d6s (one per number column) to get a random row.
+                </div>
+                <div id="rounding" class="rule">
+                    <div class="rule-header">Rounding</div> When a rule involves a fraction, always round down.
+                </div>
             </div>
 
-            <div id="dice-rules" class="rule">
-                When you want to attempt a difficult action, roll one six-sided die (“d6”) to decide a fair outcome. Added to the d6 roll is the Character’s score in a Trait, Instinct, or Skill, depending on the action. Finally, add or subtract from the roll any modifiers relevant to the circumstances, as determined by the Game Narrator (“GN”). The formula for a roll is always shown in [brackets]. Calculate the Result of a d6 roll as follows:
-                <div class="centered">
-                    [d6 roll + Score &#177; Modifiers] = Result
+            <div id="creation-section" class="chapter">
+                <div class="section-title">
+                    CREATION
                 </div>
-            </div>
-            
-            <div id="difficulty" class="rule">
-                <div class="rule-header">Difficulty (#)</div> The Result of your roll must equal or exceed to the Difficulty number to be successful. Difficulties are indicated by the # symbol. The GN or an opposing roll set the # for your rolls.
-            </div>
-
-            <div id="success" class="rule">
-                <div class="rule-header">Success (S)</div> If [Result &gt= #], the attempted action worked. Re-roll ties on opposed rolls. The degree of Success is important for some rolls.
-                <div id="rote-actions" class="rule">
-                    <div class="rule-header">Rote Actions</div> If your [(Score + Modifiers) &gt= #] before the d6 roll, and you can take your time, you Succeed automatically.
-                </div>
-                <div id="cooperation" class="rule">
-                    <div class="rule-header">Cooperation</div> If Characters want to help each other perform a task, they all roll at once but only the best roll is used, unless someone Botches (see below) in which case the Botch is used.
-                </div>
-            </div>
-
-            <div id="failure" class="rule">
-                <div class="rule-header">Fail (F)</div> If [Result &lt #], the attempted action did not work.
-            </div>
-
-            <div id="explode" class="rule">
-                <div class="rule-header">Explode (6)</div> If a 6 is rolled, re-roll it again and again as long as 6's continue. Add all of these d6 rolls together, then calculate your Result.
-            </div>
-
-            <div id="botch" class="rule">
-                <div class="rule-header">Botch (1)</div> If you roll 1 on a die, re-roll to check for a Botch. If a 1 is rolled again, you Botch, meaning you fail very badly. For any other number, your d6 roll is just a 1. Bonus rolls from Exploding dice do not Botch.
-                <br>
-                The GN is given a great deal of lattitude to be creative when determining the effects of Botching under various circumstances, but they should always be fair. Whenever a Character Botches, they get +1 Experience Point because we learn the most from our greatest failures.
-            </div>
-
-            <div id="tables" class="rule">
-                <div class="rule-header">Tables</div> Number column headers (d6, d66, d666) indicate that you must roll one, two, or three d6s (one per number column) to get a random row.
-            </div>
-
-            <div id="rounding" class="rule">
-                <div class="rule-header">Rounding</div> When a rule involves a fraction, always round down.
-            </div>
-        </div>
-
-        <div id="creation-section" class="chapter">
-            <div class="section-title">
-                CREATION
-            </div>
-            <div id="step1" class="rule">
-                <div class="rule-header">
-                    STEP 1: DESCRIPTION
-                </div>
-                <div>Choose a name, height, weight, skin color, hair color, sex, and age.</div>
-            </div>
-            <div id="step2" class="rule">
-                <div class="rule-header">
-                    STEP 2: TRAITS AND INSTINCTS
-                </div>
-                <div>
-                    Distribute 12 Trait points among the four Traits:
-                    <br>
-                    Agility [A], Brains [B], Constitution [C], and Demeanor [D].
-                    <br>
-                    Normal human Trait scores range from 1 to 6.
-                    <br>
-                    Each Trait has one associated Instinct:
-                    <br>
-                    Stealth = [A]
-                    <br>
-                    Perception = [B]
-                    <br>
-                    Athletics = [C]
-                    <br>
-                    Socialize = [D]
-                </div>
-            </div>
-            <div id="step3" class="rule">
-                <div class="rule-header">
-                    STEP 3: SKILLS
-                </div>
-                <div>
-                    Distribute [B x 6] Skill points among the twelve Skills.
-                    <br>
-                    Maximum Skill rating = [parent Trait]. Skill Specialties = [parent Skill].
-                    <br>
-                    Agility Skills: Acrobatics, Larceny, Ranged
-                    <br>
-                    Brains Skills: Medicine, Science, Survival
-                    <br>
-                    Constitution Skills: Build, Drive, Melee
-                    <br>
-                    Demeanor Skills: Leadership, Perform, Tame
-                </div>
-            </div>
-            <div id="step4" class="rule">
-                <div class="rule-header">
-                    STEP 4: PROPERTIES
-                </div>
-                <div>
-                    Calculate your Properties. Always round down.
-                    <br>
-                    Psyche = [D] dots from Crazy
-                    <br>
-                    Health = [C x 2]
-                    <br>
-                    Pain = 0
-                    <br>
-                    Actions = [(A + B) / 2]
-                    <br>
-                    Luck = [D] max
-                    <br>
-                    Speed = [A + C] yds
-                    <br>
-                    XP = [B x 6]
-                    <br>
-                    <br>
-                    Defenses:
-                    <br>
-                    Reflex = [Perception]
-                    <br>
-                    Dodge = [Acrobatics(Dodge)]
-                    <br>
-                    Block = [Melee(Block)]
-                </div>
-            </div>
-            <div id="step5" class="rule">
-                <div class="rule-header">
-                    STEP 5: ABILITIES
-                </div>
-                <div>
-                    Buy Abilities with XP [B x 6] or save some or all of it for later.
-                </div>
-            </div>
-            <div id="step6" class="rule">
-                <div class="rule-header">
-                    STEP 6: GEAR
-                </div>
-                <div>
-                    Equip your Character with Gear using your GN’s Starting Gear rules.
-                </div>
-            </div>
-        </div>
-
-        <div id="traits-section" class="chapter">
-            <div class="section-title">
-                TRAITS
-            </div>
-
-            <div id="traits-rules" class="rule">
-                The four Traits range from 1 to 6. You get 12 points for Traits. Trait rolls are [d6 + Trait]. Trait scores set the upper limit for their Skills. The average person would have a 3 in each Trait.
-            </div>
-            <div id="trait-flow" class="rule">
-                <div class="rule-header">
-                    Trait Flow
-                </div>
-                <div>
-                    Once per year (in-game), you may choose to move 1 point from one Trait to another for 24XP. Traits can only be changed by ±1 in this way. Recalculate any associated Instincts and Properties.
-                </div>
-            </div>
-            <div class="rule">
-                Instincts are derived from their parent Trait.
-            </div>
-            <div id="stealth" class="rule">
-                <div class="rule-header">
-                    Stealth
-                </div>
-                <div>
-                    = [A]. This is your talent for remaining undetected. +3 Stealth when Prone. +3 Stealth if you do not move.Spend 1AP and roll [Stealth vs Perception] to attempt to Conceal yourself. Make only one Move each rnd to remain Concealed. When not rolling, your Stealth score sets the # for enemy Perception rolls. Targets are Defenseless against Concealed ATKs.
-                </div>
-            </div>
-            <div id="perception" class="rule">
-                <div class="rule-header">
-                    Perception
-                </div>
-                <div>
-                    = [B]. This is rapidly processing you sensory input. Spend 1AP to roll Perception to search, vs Stealth to detect a Concealed enemy, vs Survival to track, or vs Socialize or Perform to discern intentions. When not rolling, your Perception score sets the # for enemy Stealth or any other roll opposed by Perception.
-                </div>
-            </div>
-            <div id="athletics" class="rule">
-                <div class="rule-header">
-                    Athletics
-                </div>
-                <div>
-                    = [C]. Climb at [Speed / 2]. Swim at [Speed / 4].
-                </div>
-            </div>
-            <div id="socialize" class="rule">
-                <div class="rule-header">
-                    Socialize
-                </div>
-                <div>
-                    = [D]. This is how good you are at getting others to like you.
-                </div>
-            </div>
-        </div>
-
-        <div id="skills-section" class="chapter">
-            <div class="section-title">
-                SKILLS
-            </div>
-            <div class="rule">
-                The twelve Skills range from 1 to 6. You get [B x 6] points for Skills. Skill rolls are [d6 + Skill]. Trait scores set the upper limit for their Skills. Specialties (listed below their Skills) equal their parent Skill by default. Specialties can exceed the parent Skill by taking the Specialize Ability. 
-            </div>
-            <div id="skill-flow" class="rule">
-                • Skill Flow: Once per month (in-game), transfer 1 point from a Skill you have not used to one that you have used.
-            </div>
-            <div id="agility-skills" class="rule">
-                <div id="acrobatics" class="rule">
+                <div id="step1" class="rule">
                     <div class="rule-header">
-                        Acrobatics
+                        STEP 1: DESCRIPTION
+                    </div>
+                    <div>Choose a name, height, weight, skin color, hair color, sex, and age.</div>
+                </div>
+                <div id="step2" class="rule">
+                    <div class="rule-header">
+                        STEP 2: TRAITS AND INSTINCTS
                     </div>
                     <div>
-                        Gymnastic prowess. [ # = 6 ]
-                        <div class="rule">
-                            <div class="rule-header">
-                                Dodge
-                            </div>
-                            <div>
-                                (1AP) Roll vs [MATK or Ranged(Throw)].
-                            </div>
-                        </div>
-                        <div class="rule">
-                            <div class="rule-header">
-                                Jump
-                            </div>
-                            <div>
-                                (2AP) Running Jump [Speed]. Vertical [Speed x 3”].
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="larceny" class="rule">
-                    <div class="rule-header">
-                        Larceny
-                    </div>
-                    <div>
-                        Delicate operations requiring finesse. [ # = varies ]
-                        <div class="rule">
-                            <div class="rule-header">
-                                Disable
-                            </div>
-                            <div>
-                                (d6mins) Disable Locks, Traps, or Bombs. # by item.
-                            </div>
-                        </div>
-                        <div class="rule">
-                            <div class="rule-header">
-                                Steal
-                            </div>
-                            <div>
-                                (1AP) Pick pocket or hide item. # = [Perception].
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="ranged" class="rule">
-                    <div class="rule-header">
-                        Ranged
-                    </div>
-                    <div>
-                        Projectile combat. [ # = DEF ]
-                        <div class="rule">
-                            <div class="rule-header">
-                                Shoot
-                            </div>
-                            <div>
-                                (1AP) Roll vs [Reflex or Block (with a Shield)].
-                            </div>
-                        </div>
-                        <div class="rule">
-                            <div class="rule-header">
-                                Throw
-                            </div>
-                            <div>
-                                (1AP) Roll vs [Dodge or Block (with a Shield)].
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="brains-skills" class="rule">
-                <div id="medicine" class="rule">
-                    <div class="rule-header">
-                        Medicine
-                    </div>
-                    <div>
-                        Diagnosing and treating wounds. [ # = DMG ]
-                        <div class="rule">
-                            <div class="rule-header">
-                                First-Aid
-                            </div>
-                            <div>
-                                (6AP) Stop Bleeding.
-                            </div>
-                        </div>
-                        <div class="rule">
-                            <div class="rule-header">
-                                Surgery
-                            </div>
-                            <div>
-                                (1hr/DMG) Heal 1 HP.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="science" class="rule">
-                    <div class="rule-header">
-                        Science
-                    </div>
-                    <div>
-                        Knowledge of physical laws. [ # = varies ]
-                        <div class="rule">
-                            <div class="rule-header">
-                                Chemistry
-                            </div>
-                            <div>
-                                (# x 10mins) Use [d6 + # Chemicals].
-                            </div>
-                        </div>
-                        <div class="rule">
-                            <div class="rule-header">
-                                Technology
-                            </div>
-                            <div>
-                                (varies) Make or use technological devices.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="survival" class="rule">
-                    <div class="rule-header">
-                        Survival
-                    </div>
-                    <div>
-                        Primitive practices for living outdoors. [ # = Biome ]
-                        <div class="rule">
-                            <div class="rule-header">
-                                Forage
-                            </div>
-                            <div>
-                                (1hr) Provide 1 Need for 1 person.
-                            </div>
-                        </div>
-                        <div class="rule">
-                            <div class="rule-header">
-                                Navigate
-                            </div>
-                            <div>
-                                (1hr) Plot course. Roll vs [Perception] if tracked.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="constitution-skills" class="rule">
-                <div id="build" class="rule">
-                    <div class="rule-header">
-                        Build
-                    </div>
-                    <div>
-                        Build: Make an item out of [d6 + #] Parts. [ # = 9+ ]
-                        <div class="rule">
-                            <div class="rule-header">
-                                Customize
-                            </div>
-                            <div>
-                                (#hrs) 3 per item. Each must be unique.
-                                <br>
-                                Weapons: +1 RATK, +1 Melee DMG, or a new Attribute.
-                                <br>
-                                Armor: +1 DR or a new Attribute.
-                            </div>
-                        </div>
-                        <div class="rule">
-                            <div class="rule-header">
-                                Repair
-                            </div>
-                            <div>
-                                (#hrs) Fix broken item. +1 with same Parts.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="drive" class="rule">
-                    <div class="rule-header">
-                        Drive
-                    </div>
-                    <div>
-                        Control a vehicle. [ # = Drive ]
-                        <div class="rule">
-                            <div class="rule-header">
-                                Ram
-                            </div>
-                            <div>
-                                (1AP) Roll vs [Drive(Stunt)] to ATK with a vehicle.
-                            </div>
-                        </div>
-                        <div class="rule">
-                            <div class="rule-header">
-                                Stunt
-                            </div>
-                            <div>
-                                (1AP) Roll vs [Drive(Ram)] for DEF with a vehicle.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="melee" class="rule">
-                    <div class="rule-header">
-                        Melee
-                    </div>
-                    <div>
-                        Hand-to-hand combat. [ # = ATK or DEF ]
-                        <div class="rule">
-                            <div class="rule-header">
-                                Block
-                            </div>
-                            <div>
-                                (1AP) Roll vs [MATK or RATK (if you have a Shield)].
-                            </div>
-                        </div>
-                        <div class="rule">
-                            <div class="rule-header">
-                                Strike
-                            </div>
-                            <div>
-                                (1AP) Roll vs [DEF]. DMG = [weapon DMG + Success].
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="demeanor-skills" class="rule">
-                <div id="leadership" class="rule">
-                    <div class="rule-header">
-                        Leadership
-                    </div>
-                    <div>
-                        Leadership: Directing the efforts of others. [ # = Demeanor ]
-                        <div class="rule">
-                            <div class="rule-header">
-                                Encourage
-                            </div>
-                            <div>
-                                (3AP) Roll vs [groups’ D]. Bonus = [your D].
-                            </div>
-                        </div>
-                        <div class="rule">
-                            <div class="rule-header">
-                                Order
-                            </div>
-                            <div>
-                                (1AP) Extra obeys instructions.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="perform" class="rule">
-                    <div class="rule-header">
-                        Perform
-                    </div>
-                    <div>
-                        Captivating an audience. [ # = Perception ]
-                        <div class="rule">
-                            <div class="rule-header">
-                                Distract
-                            </div>
-                            <div>
-                                (3AP) Target is Defenseless for 1rnd.
-                            </div>
-                        </div>
-                        <div class="rule">
-                            <div class="rule-header">
-                                Lie
-                            </div>
-                            <div>
-                                (1AP) Target believes your plausible falsehood.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="tame" class="rule">
-                    <div class="rule-header">
-                        Tame
-                    </div>
-                    <div>
-                        Alter an animal’s Attitude by one step. [ # = Demeanor ]
-                        <div class="rule">
-                            <div class="rule-header">
-                                Command
-                            </div>
-                            <div>
-                                (1AP) Animal obeys your command.
-                            </div>
-                        </div>
-                        <div class="rule">
-                            <div class="rule-header">
-                                Traint
-                            </div>
-                            <div>
-                                (1wk) Animals can be taught commands = [its B x 2].
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="properties-section" class="chapter">
-            <div class="section-title">
-                PROPERTIES
-            </div>
-            <div class="rule">
-                Properties derive their scores from Traits, Instincts, or Skills.
-            </div>
-            <div id="agility-properties" class="rule">
-                <div class="rule-header">
-                    Agility Properties
-                </div>
-                <div id="actions" class="rule">
-                    <div class="rule-header">
-                        Actions (AP)
-                    </div>
-                    <div>
-                        = [(A + B) / 2]. Taking an action costs a number of Action Points, usually only 1AP. AP refills at the beginning of your next turn.
-                    </div>
-                </div>
-                <div id="dodge" class="rule">
-                    <div class="rule-header">
-                        Dodge
-                    </div>
-                    <div>
-                        = [Acrobatics(Dodge)]. This is your skillfullness at getting out of harm’s way. Dodge costs 1AP to use.
-                    </div>
-                </div>
-                <div id="speed" class="rule">
-                    <div class="rule-header">
-                        Speed
-                    </div>
-                    <div>
-                        = [A + C]. Spend 1AP to move [Speed] yds. Spend all AP each rnd on movement to Run with [Speed x 2] for up to [C x 5] mins. March at [Speed / 2] mph for up to [C x 2] hrs.
-                    </div>
-                </div>
-            </div>
-            <div id="brains-properties" class="rule">
-                <div class="rule-header">
-                    Brains Properties
-                </div>
-                <div id="reflex" class="rule">
-                    <div class="rule-header">
-                        Reflex
-                    </div>
-                    <div>
-                        = [Perception]. This is the default Difficulty that an enemy must beat to hit you if you do not or cannot try to Block or Dodge the attack.
-                    </div>
-                </div>
-                <div id="experience" class="rule">
-                    <div class="rule-header">
-                        Experience (XP)
-                    </div>
-                    <div>
-                        = [B per session]. XP is earned once per game session. The GN may give bonus XP. Spend XP to buy Abilities.
-                    </div>
-                </div>
-            </div>
-            <div id="constitution-properties" class="rule">
-                <div class="rule-header">
-                    Constitution Properties
-                </div>
-                <div id="block" class="rule">
-                    <div class="rule-header">
-                        Block
-                    </div>
-                    <div>
-                        = [Melee(Block)]. This is your skillfullness at deflecting attacks with weapons. Block costs 1AP to use.
-                    </div>
-                </div>
-                <div id="health" class="rule">
-                    <div class="rule-header">
-                        Health (HP)
-                    </div>
-                    <div>
-                        = [C x 2]. This is the amount of DMG you can take. Go Unconscious at 0 HP and die at [-C] HP. HP is recovered by 1 per day with a [C vs DMG] roll.
-                    </div>
-                </div>
-            </div>
-            <div id="demeanor-properties" class="rule">
-                <div class="rule-header">
-                    Demeanor Properties
-                </div>
-                <div id="psyche" class="rule">
-                    <div class="rule-header">
-                        Psyche
-                    </div>
-                    <div>
-                        <p>= [D]. This is a rough measure of your mental health on a sliding scale from Crazy to Sane. Fill in the dot = [your Demeanor] counting from Crazy. Especially relaxing or inspiring things might move the dot one step towards Sane. Extremely traumatic things move the dot one step towards Crazy.</p>
-                        <p>During the game session, Players and the GN should make a note when something happens that might alter the Character’s Psyche. After the game session, they should discuss the events that occurred and whether they were personally relevant enough to constitute a change in Psyche for that Character at that time.</p>
-                        <p>Upon losing your last dot of Psyche, the GN takes control of your Character for d6hrs of in-game time. The GN can decide whether or not you remember what happens during this period. Afterward, the Character starts back at 1 Psyche.</p>
-                    </div>
-                </div>
-                <div id="luck" class="rule">
-                    <div class="rule-header">
-                        Luck
-                    </div>
-                    <div>
-                        = [D]. Luck rolls [d6 + current Luck points] are made to determine your fate in matters of pure chance. Luck points refill at dawn each day. You may spend Luck in dramatic moments to:
+                        Distribute 12 Trait points among the four Traits:
                         <br>
-                        Take a re-roll with a +6 bonus.
+                        Agility [A], Brains [B], Constitution [C], and Demeanor [D].
                         <br>
-                        Get +1AP.
+                        Normal human Trait scores range from 1 to 6.
                         <br>
-                        Give a Luck point to a Comrade.
+                        Each Trait has one associated Instinct:
+                        <br>
+                        Stealth = [A]
+                        <br>
+                        Perception = [B]
+                        <br>
+                        Athletics = [C]
+                        <br>
+                        Socialize = [D]
                     </div>
                 </div>
-                <div id="comrades" class="rule">
+                <div id="step3" class="rule">
                     <div class="rule-header">
-                        Comrades
+                        STEP 3: SKILLS
                     </div>
                     <div>
-                        These are close allies for whom you would risk much to protect. List your Comrades in order of importance to you if you want to track the priority of your relationships in your Team.
+                        Distribute [B x 6] Skill points among the twelve Skills.
+                        <br>
+                        Maximum Skill rating = [parent Trait]. Skill Specialties = [parent Skill].
+                        <br>
+                        Agility Skills: Acrobatics, Larceny, Ranged
+                        <br>
+                        Brains Skills: Medicine, Science, Survival
+                        <br>
+                        Constitution Skills: Build, Drive, Melee
+                        <br>
+                        Demeanor Skills: Leadership, Perform, Tame
+                    </div>
+                </div>
+                <div id="step4" class="rule">
+                    <div class="rule-header">
+                        STEP 4: PROPERTIES
+                    </div>
+                    <div>
+                        Calculate your Properties. Always round down.
+                        <br>
+                        Psyche = [D] dots from Crazy
+                        <br>
+                        Health = [C x 2]
+                        <br>
+                        Pain = 0
+                        <br>
+                        Actions = [A / 2]
+                        <br>
+                        Luck = [D] max
+                        <br>
+                        Speed = [A + C] yds
+                        <br>
+                        XP = [B x 6]
+                        <br>
+                        <br>
+                        Defenses:
+                        <br>
+                        Reflex = [Perception]
+                        <br>
+                        Dodge = [Acrobatics(Dodge)]
+                        <br>
+                        Block = [Melee(Block)]
+                    </div>
+                </div>
+                <div id="step5" class="rule">
+                    <div class="rule-header">
+                        STEP 5: ABILITIES
+                    </div>
+                    <div>
+                        Buy Abilities with XP [B x 6] or save some or all of it for later.
+                    </div>
+                </div>
+                <div id="step6" class="rule">
+                    <div class="rule-header">
+                        STEP 6: GEAR
+                    </div>
+                    <div>
+                        Equip your Character with Gear using your GN’s Starting Gear rules.
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div id="combat-section" class="chapter">
-            <div class="section-title">
-                COMBAT
+            <div id="traits-section" class="chapter">
+                <div class="section-title">
+                    TRAITS
+                </div>
+
+                <div id="traits-rules" class="rule">
+                    The four Traits range from 1 to 6. You get 12 points for Traits. Trait rolls are [d6 + Trait]. Trait scores set the upper limit for their Skills. The average person would have a 3 in each Trait.
+                </div>
+                <div id="trait-flow" class="rule">
+                    <div class="rule-header">
+                        Trait Flow
+                    </div>
+                    <div>
+                        Once per year (in-game), you may choose to move 1 point from one Trait to another for 24XP. Traits can only be changed by ±1 in this way. Recalculate any associated Instincts and Properties.
+                    </div>
+                </div>
+                <div class="rule">
+                    Instincts are derived from their parent Trait.
+                </div>
+                <div id="stealth" class="rule">
+                    <div class="rule-header">
+                        Stealth
+                    </div>
+                    <div>
+                        = [A]. This is your talent for remaining undetected. +3 Stealth when Prone. +3 Stealth if you do not move.Spend 1AP and roll [Stealth vs Perception] to attempt to Conceal yourself. Make only one Move each rnd to remain Concealed. When not rolling, your Stealth score sets the # for enemy Perception rolls. Targets are Defenseless against Concealed ATKs.
+                    </div>
+                </div>
+                <div id="perception" class="rule">
+                    <div class="rule-header">
+                        Perception
+                    </div>
+                    <div>
+                        = [B]. This is rapidly processing you sensory input. Spend 1AP to roll Perception to search, vs Stealth to detect a Concealed enemy, vs Survival to track, or vs Socialize or Perform to discern intentions. When not rolling, your Perception score sets the # for enemy Stealth or any other roll opposed by Perception.
+                    </div>
+                </div>
+                <div id="athletics" class="rule">
+                    <div class="rule-header">
+                        Athletics
+                    </div>
+                    <div>
+                        = [C]. Climb at [Speed / 2]. Swim at [Speed / 4].
+                    </div>
+                </div>
+                <div id="socialize" class="rule">
+                    <div class="rule-header">
+                        Socialize
+                    </div>
+                    <div>
+                        = [D]. This is how good you are at getting others to like you.
+                    </div>
+                </div>
             </div>
-            <div class="rule">
-                Combat time occurs in 3-second “rounds” (rnds). Each Player gets a turn each rnd. Either the GN decides or rolls [A vs A] to determine who goes first. At the end of each turn, the Player gets to choose who will go next among those who have not had a turn yet this rnd. At the end of the rnd, all DMG is applied simultaneously and the last Player to act decides who will start the next round.
+
+            <div id="skills-section" class="chapter">
+                <div class="section-title">
+                    SKILLS
+                </div>
+                <div class="rule">
+                    The twelve Skills range from 1 to 6. You get [B x 6] points for Skills. Skill rolls are [d6 + Skill]. Trait scores set the upper limit for their Skills. Specialties (listed below their Skills) equal their parent Skill by default. Specialties can exceed the parent Skill by taking the Specialize Ability. 
+                </div>
+                <div id="skill-flow" class="rule">
+                    • Skill Flow: Once per month (in-game), transfer 1 point from a Skill you have not used to one that you have used.
+                </div>
+                <div id="agility-skills" class="rule">
+                    <div id="acrobatics" class="rule">
+                        <div class="rule-header">
+                            Acrobatics
+                        </div>
+                        <div>
+                            Gymnastic prowess. [ # = 6 ]
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Dodge
+                                </div>
+                                <div>
+                                    (1AP) Roll vs [MATK or Ranged(Throw)].
+                                </div>
+                            </div>
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Jump
+                                </div>
+                                <div>
+                                    (2AP) Running Jump [Speed]. Vertical [Speed x 3”].
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="larceny" class="rule">
+                        <div class="rule-header">
+                            Larceny
+                        </div>
+                        <div>
+                            Delicate operations requiring finesse. [ # = varies ]
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Disable
+                                </div>
+                                <div>
+                                    (d6mins) Disable Locks, Traps, or Bombs. # by item.
+                                </div>
+                            </div>
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Steal
+                                </div>
+                                <div>
+                                    (1AP) Pick pocket or hide item. # = [Perception].
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="ranged" class="rule">
+                        <div class="rule-header">
+                            Ranged
+                        </div>
+                        <div>
+                            Projectile combat. [ # = DEF ]
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Shoot
+                                </div>
+                                <div>
+                                    (1AP) Roll vs [Reflex or Block (with a Shield)].
+                                </div>
+                            </div>
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Throw
+                                </div>
+                                <div>
+                                    (1AP) Roll vs [Dodge or Block (with a Shield)].
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="brains-skills" class="rule">
+                    <div id="medicine" class="rule">
+                        <div class="rule-header">
+                            Medicine
+                        </div>
+                        <div>
+                            Diagnosing and treating wounds. [ # = DMG ]
+                            <div class="rule">
+                                <div class="rule-header">
+                                    First-Aid
+                                </div>
+                                <div>
+                                    (6AP) Stop Bleeding.
+                                </div>
+                            </div>
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Surgery
+                                </div>
+                                <div>
+                                    (1hr/DMG) Heal 1 HP.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="science" class="rule">
+                        <div class="rule-header">
+                            Science
+                        </div>
+                        <div>
+                            Knowledge of physical laws. [ # = varies ]
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Chemistry
+                                </div>
+                                <div>
+                                    (# x 10mins) Use [d6 + # Chemicals].
+                                </div>
+                            </div>
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Technology
+                                </div>
+                                <div>
+                                    (varies) Make or use technological devices.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="survival" class="rule">
+                        <div class="rule-header">
+                            Survival
+                        </div>
+                        <div>
+                            Primitive practices for living outdoors. [ # = Biome ]
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Forage
+                                </div>
+                                <div>
+                                    (1hr) Provide 1 Need for 1 person.
+                                </div>
+                            </div>
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Navigate
+                                </div>
+                                <div>
+                                    (1hr) Plot course. Roll vs [Perception] if tracked.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="constitution-skills" class="rule">
+                    <div id="build" class="rule">
+                        <div class="rule-header">
+                            Build
+                        </div>
+                        <div>
+                            Build: Make an item out of [d6 + #] Parts. [ # = 9+ ]
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Customize
+                                </div>
+                                <div>
+                                    (#hrs) 3 per item. Each must be unique.
+                                    <br>
+                                    Weapons: +1 RATK, +1 Melee DMG, or a new Attribute.
+                                    <br>
+                                    Armor: +1 DR or a new Attribute.
+                                </div>
+                            </div>
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Repair
+                                </div>
+                                <div>
+                                    (#hrs) Fix broken item. +1 with same Parts.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="drive" class="rule">
+                        <div class="rule-header">
+                            Drive
+                        </div>
+                        <div>
+                            Control a vehicle. [ # = Drive ]
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Ram
+                                </div>
+                                <div>
+                                    (1AP) Roll vs [Drive(Stunt)] to ATK with a vehicle.
+                                </div>
+                            </div>
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Stunt
+                                </div>
+                                <div>
+                                    (1AP) Roll vs [Drive(Ram)] for DEF with a vehicle.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="melee" class="rule">
+                        <div class="rule-header">
+                            Melee
+                        </div>
+                        <div>
+                            Hand-to-hand combat. [ # = ATK or DEF ]
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Block
+                                </div>
+                                <div>
+                                    (1AP) Roll vs [MATK or RATK (if you have a Shield)].
+                                </div>
+                            </div>
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Strike
+                                </div>
+                                <div>
+                                    (1AP) Roll vs [DEF]. DMG = [weapon DMG + Success].
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="demeanor-skills" class="rule">
+                    <div id="leadership" class="rule">
+                        <div class="rule-header">
+                            Leadership
+                        </div>
+                        <div>
+                            Leadership: Directing the efforts of others. [ # = Demeanor ]
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Encourage
+                                </div>
+                                <div>
+                                    (3AP) Roll vs [groups’ D]. Bonus = [your D].
+                                </div>
+                            </div>
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Order
+                                </div>
+                                <div>
+                                    (1AP) Extra obeys instructions.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="perform" class="rule">
+                        <div class="rule-header">
+                            Perform
+                        </div>
+                        <div>
+                            Captivating an audience. [ # = Perception ]
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Distract
+                                </div>
+                                <div>
+                                    (3AP) Target is Defenseless for 1rnd.
+                                </div>
+                            </div>
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Lie
+                                </div>
+                                <div>
+                                    (1AP) Target believes your plausible falsehood.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tame" class="rule">
+                        <div class="rule-header">
+                            Tame
+                        </div>
+                        <div>
+                            Alter an animal’s Attitude by one step. [ # = Demeanor ]
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Command
+                                </div>
+                                <div>
+                                    (1AP) Animal obeys your command.
+                                </div>
+                            </div>
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Traint
+                                </div>
+                                <div>
+                                    (1wk) Animals can be taught commands = [its B x 2].
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="rule">
-                <div class="rule-header">
-                    Action Points (AP)
+
+            <div id="properties-section" class="chapter">
+                <div class="section-title">
+                    PROPERTIES
                 </div>
-                <div>
-                    Perform Actions by spending Action Points. Your maximum AP is the average of your [A] and [B]. AP refills at the beginning of your next turn. Unless otherwise noted, all Actions cost 1AP. You may spend AP on your turn to hold a specific Action to be used at a later time. Otherwise, if it is not your turn, you can only Defend.
+                <div class="rule">
+                    Properties derive their scores from Traits, Instincts, or Skills.
                 </div>
-            </div>
-            <div class="rule">
-                <div class="rule-header">
-                    Movement
+                <div id="agility-properties" class="rule">
+                    <div class="rule-header">
+                        Agility Properties
+                    </div>
+                    <div id="actions" class="rule">
+                        <div class="rule-header">
+                            Actions (AP)
+                        </div>
+                        <div>
+                            = [A / 2]. Taking an action costs a number of Action Points, usually only 1AP. AP refills at the beginning of your next turn.
+                        </div>
+                    </div>
+                    <div id="dodge" class="rule">
+                        <div class="rule-header">
+                            Dodge
+                        </div>
+                        <div>
+                            = [Acrobatics(Dodge)]. This is your skillfullness at getting out of harm’s way. Dodge costs 1AP to use.
+                        </div>
+                    </div>
+                    <div id="speed" class="rule">
+                        <div class="rule-header">
+                            Speed
+                        </div>
+                        <div>
+                            = [A + C]. Spend 1AP to move [Speed] yds. Spend all AP each rnd on movement to Run with [Speed x 4] for up to [C x 5] mins. March at [Speed / 2] mph for up to [C x 2] hrs.
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    Spend 1AP to move up to your Speed [A + C]. To Run, spend all of your AP this rnd and each move is [Speed x2]. Spend 1AP to drop Prone or stand up.
-                </div>
-            </div>
-            <div class="rule">
-                <div class="rule-header">
-                    Attack (ATK)
-                </div>
-                <div>
-                    There are MATKs (Melee) and RATKs (Ranged). Roll [d6 + MATK or RATK] vs Defense (DEF). Explosions are re-rolled and added to ATK. Bonus DMG = [ATK - DEF] up to Melee or Ranged.
-                </div>
-            </div>
-            <div class="rule">
-                <div class="rule-header">
-                    Defense (DEF)
-                </div>
-                <div>
-                    1AP to defend against an ATK with Block [d6 + Melee] or Dodge [d6 + Acrobatics]. When unaware of the ATK or otherwise unable to avoid it, you are Defenseless and must use Reflex for DEF. A Botch means you fall Prone (Dodge) or drop your weapon (Block).
-                    <div class="rule">
+                <div id="brains-properties" class="rule">
+                    <div class="rule-header">
+                        Brains Properties
+                    </div>
+                    <div id="reflex" class="rule">
                         <div class="rule-header">
                             Reflex
                         </div>
                         <div>
-                            = [Perception]. Default DEF score. No roll. No AP spent.
+                            = [Perception]. This is the default Difficulty that an enemy must beat to hit you if you do not or cannot try to Block or Dodge the attack.
+                        </div>
+                    </div>
+                    <div id="experience" class="rule">
+                        <div class="rule-header">
+                            Experience (XP)
+                        </div>
+                        <div>
+                            = [B per session]. XP is earned once per game session. The GN may give bonus XP. Spend XP to buy Abilities.
+                        </div>
+                    </div>
+                </div>
+                <div id="constitution-properties" class="rule">
+                    <div class="rule-header">
+                        Constitution Properties
+                    </div>
+                    <div id="block" class="rule">
+                        <div class="rule-header">
+                            Block
+                        </div>
+                        <div>
+                            = [Melee(Block)]. This is your skillfullness at deflecting attacks with weapons. Block costs 1AP to use.
+                        </div>
+                    </div>
+                    <div id="health" class="rule">
+                        <div class="rule-header">
+                            Health (HP)
+                        </div>
+                        <div>
+                            = [C x 2]. This is the amount of DMG you can take. Go Unconscious at 0 HP and die at [-C] HP. HP is recovered by 1 per day with a [C vs DMG] roll.
+                        </div>
+                    </div>
+                </div>
+                <div id="demeanor-properties" class="rule">
+                    <div class="rule-header">
+                        Demeanor Properties
+                    </div>
+                    <div id="psyche" class="rule">
+                        <div class="rule-header">
+                            Psyche
+                        </div>
+                        <div>
+                            <p>= [D]. This is a rough measure of your mental health on a sliding scale from Crazy to Sane. Fill in the dot = [your Demeanor] counting from Crazy. Especially relaxing or inspiring things might move the dot one step towards Sane. Extremely traumatic things move the dot one step towards Crazy.</p>
+                            <p>During the game session, Players and the GN should make a note when something happens that might alter the Character’s Psyche. After the game session, they should discuss the events that occurred and whether they were personally relevant enough to constitute a change in Psyche for that Character at that time.</p>
+                            <p>Upon losing your last dot of Psyche, the GN takes control of your Character for d6hrs of in-game time. The GN can decide whether or not you remember what happens during this period. Afterward, the Character starts back at 1 Psyche.</p>
+                        </div>
+                    </div>
+                    <div id="luck" class="rule">
+                        <div class="rule-header">
+                            Luck
+                        </div>
+                        <div>
+                            = [D]. Luck rolls [d6 + current Luck points] are made to determine your fate in matters of pure chance. Luck points refill at dawn each day. You may spend Luck in dramatic moments to:
+                            <br>
+                            Take a re-roll with a +6 bonus.
+                            <br>
+                            Get +1AP.
+                            <br>
+                            Give a Luck point to a Comrade.
+                        </div>
+                    </div>
+                    <div id="comrades" class="rule">
+                        <div class="rule-header">
+                            Comrades
+                        </div>
+                        <div>
+                            These are close allies for whom you would risk much to protect. List your Comrades in order of importance to you if you want to track the priority of your relationships in your Team.
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="rule">
-                <div class="rule-header">
-                    Health (HP)
-                </div>
-                <div>
-                    = [C x 2]. HP is temporarily reduced when you take DMG. Go Unconscious at 0 HP and die at [-C] HP.
-                    <div class="rule">
-                        <div class="rule-header">
-                            Bleeding
-                        </div>
-                        <div>
-                            Starts when DMG drops you to [HP / 2]. 1 DMG per minute. Roll [C vs DMG] once per minute to stop Bleeding naturally. Roll [Medicine(First-Aid) vs DMG] to stop Bleeding with a bandage.
-                        </div>
-                    </div>
-                    <div class="rule">
-                        <div class="rule-header">
-                            Recovery
-                        </div>
-                        <div>
-                            Roll [C vs DMG] once per day to heal 1HP. On a Fail, take 1 DMG from infection.
-                        </div>
-                    </div>
-                    <div class="rule">
-                        <div class="rule-header">
-                            Death
-                        </div>
-                        <div>
-                            Make a new Character with bonus XP = [old Total XP / 2].
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="rule">
-                    <div class="rule-header">
-                Damage (DMG)
-                </div>
-                <div>
-                    ATKs do DMG to HP = [Weapon DMG + Success]. DMG adds Pain penalties to all rolls and Speed. If one ATK does [DMG &gt C], you fall Prone.
-                    <div class="rule">
-                        <div class="rule-header">
-                            Armor (DR)
-                        </div>
-                        <div>
-                            DR reduces DMG. -1 DR if [DMG &gt DR].
-                        </div>
-                    </div>
-                    <div class="rule">
-                        <div class="rule-header">
-                            Fire (FDMG)
-                        </div>
-                        <div>
-                            When you take FDMG, 1FDMG is permanent. Only Fire-Resistant (FR) Armor reduces FDMG.
-                        </div>
-                    </div>
-                    <div class="rule">
-                        <div class="rule-header">
-                            Pain
-                        </div>
-                        <div>
-                            -1 to all rolls and Speed.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="rule">
-                <div class="rule-header">
-                Vehicles
-                </div>
-                Roll [Drive(Ram) vs Drive(Stunt)] to hit an enemy vehicle. If [loser’s DR &lt= winner’s DR], or if a vehicle takes [DMG &gt DR], the vehicle gets a Condition. 0 DR disables a vehicle. A Botch is a Wreck.
-                <div class="rule">
-                    <div class="rule-header">
-                        Conditions
-                    </div>
-                    <div>
-                        -1 DR and -1 Handling. Roll [Drive 9#] to maintain control upon getting a Condition, otherwise the vehicle Wrecks.
-                    </div>
-                </div>
-                <div class="rule">
-                    <div class="rule-header">
-                        Occupants
-                    </div>
-                    <div>
-                        Passengers in a moving vehicle are Unstable. A vehicle provides Cover from RATKs with its DR.
-                    </div>
-                </div>
-                <div class="rule">
-                    <div class="rule-header">
-                        Pedestrians
-                    </div>
-                    <div>
-                        Hitting a pedestrian does DMG = [vehicle DR]. -1 DR after hitting pedestrians = [vehicle DR].
-                    </div>
-                </div>
-                <div class="rule">
-                    <div class="rule-header">
-                        Tires
-                    </div>
-                    <div>
-                        Roll [-3 ATK vs Drive(Stunt)] to destroy a tire. If the tire is destroyed, the driver must roll [Drive 9#] or Wreck. If a front tire gets destroyed, the vehicle Wrecks automatically.
-                    </div>
-                </div>
-                <div class="rule">
-                    <div class="rule-header">
-                        Wreck
-                    </div>
-                    <div>
-                        The vehicle comes to a violent stop suddenly this rnd. Occupants take [d6 DMG per 30yds of Speed] and are ejected from the vehicle, unless they are wearing seat belts, in which case the DMG is halved and they remain in their seats.
-                        <div class="rule">
-                            <div class="rule-header">
-                                Burning
-                            </div>
-                            <div>
-                                If the Vehicle is at 0DR, it bursts into flames doing 1FDMG per rnd to all Occupants. It continues to burn for 1 minute per gallon of Fuel.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div id="maneuvers-section" class="chapter">
-            <div class="section-title">
-                MANEUVERS
-            </div>
-            <div id="defensive-maneuvers">
-                <div class="rule-header">
-                    Defensive
-                </div>
-                <div class="rule">
-                    <div class="rule-header">
-                        Block
-                    </div>
-                    <div>
-                        Roll [Melee vs MATK or RATK (if you have a Shield)] for DEF.
-                    </div>
-                </div>
-                <div class="rule">
-                    <div class="rule-header">
-                        Dodge
-                    </div>
-                    <div>
-                        Roll [Acrobatics vs MATK or RATK (Throw)] for DEF.
-                        <div class="rule">
-                            <div class="rule-header">
-                                Duck
-                            </div>
-                            <div>
-                                Dodge behind Cover. Material’s DR reduces DMG.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="rule">
-                    <div class="rule-header">
-                        Full Defense
-                    </div>
-                    <div>
-                        Forego all ATKs on your turn to add your [Reflex] to each of your Block and Dodge rolls until your next turn.
-                    </div>
-                </div>
-                <div class="rule">
-                    <div class="rule-header">
-                        Hide
-                    </div>
-                    <div>
-                        Roll [Stealth vs Perception] to gain Concealment.
-                    </div>
-                </div>
-                <div class="rule">
-                    <div class="rule-header">
-                        Protect
-                    </div>
-                    <div>
-                        Become the new target of an ATK targeting someone within 1yd of you. You may still Block as normal, but you cannot Dodge the ATK.
-                    </div>
-                </div>
-                <div class="rule">
-                    <div class="rule-header">
-                        Run
-                    </div>
-                    <div>
-                        Spend all of your Actions on movement. Each move is [Speed x2].
-                    </div>
-                </div>
-            </div>
-            <div id="offensive-maneuvers">
+            <div id="combat-section" class="chapter">
                 <div class="section-title">
-                    Offensive
+                    COMBAT
+                </div>
+                <div class="rule">
+                    Combat time occurs in 3-second “rounds” (rnds). Each Player gets a turn each rnd. Either the GN decides or rolls [A vs A] to determine who goes first. At the end of each turn, the Player gets to choose who will go next among those who have not had a turn yet this rnd. At the end of the rnd, all DMG is applied simultaneously and the last Player to act decides who will start the next round.
                 </div>
                 <div class="rule">
                     <div class="rule-header">
-                        Aim
+                        Action Points (AP)
                     </div>
                     <div>
-                        Hold your weapon on target and spend 1AP each rnd for +1 ATK, up to 3AP over 3 or more rnds to get +3 ATK. Defenseless while Aiming.
-                    </div>
-                </div>
-                <div class="rule">
-                    <div class="rule-header">
-                        Called Shot
-                    </div>
-                    <div>
-                        ATK targeting the Head or Limbs. Head ATKs are at -3, do [DMG x 2], and Stun for 1rnd. Limb ATKs are at -1, do [DMG / 2], and cause the enemy to drop a held item (Arms) or be knocked Prone (Legs).
+                        Perform Actions by spending Action Points. Your maximum AP = [A / 2]. AP refills at the beginning of your next turn. Unless otherwise noted, all Actions cost 1AP. You may spend AP on your turn to hold a specific Action to be used at a later time. Otherwise, if it is not your turn, you can only Defend.
                     </div>
                 </div>
                 <div class="rule">
                     <div class="rule-header">
-                        Disarm
+                        Movement
                     </div>
                     <div>
-                        Roll [MATK vs Melee (+[C] if the weapon is used two-handed)]. The weapon flies d6yds. Attacker gets the weapon if they are Unarmed.
+                        Spend 1AP to move up to your Speed [A + C]. To Run, spend all of your AP this rnd and each move is [Speed x4]. Spend 1AP to drop Prone or stand up.
                     </div>
                 </div>
                 <div class="rule">
                     <div class="rule-header">
-                        Dual-Wield
+                        Attack (ATK)
                     </div>
                     <div>
-                        Once per rnd, you may roll ATK or Block for both weapons at a penalty [-1 Primary, -3 Off-hand] for 1AP. Take the best weapon roll.
+                        There are MATKs (Melee) and RATKs (Ranged). Roll [d6 + MATK or RATK] vs Defense (DEF). Explosions are re-rolled and added to ATK. Bonus DMG = [ATK - DEF] up to Melee or Ranged.
                     </div>
                 </div>
                 <div class="rule">
                     <div class="rule-header">
-                        Grab
+                        Defense (DEF)
                     </div>
                     <div>
-                        0DMG MATK to render an enemy Defenseless. Spend 1AP per rnd to retain Grab. Roll [(Acrobatics or Melee) vs Grab] to escape.
+                        1AP to defend against an ATK with Block [d6 + Melee] or Dodge [d6 + Acrobatics]. When unaware of the ATK or otherwise unable to avoid it, you are Defenseless and must use Reflex for DEF. A Botch means you fall Prone (Dodge) or drop your weapon (Block).
                         <div class="rule">
                             <div class="rule-header">
-                                Attack
+                                Reflex
                             </div>
                             <div>
-                                Make an ATK against a Grabbed enemy.
-                            </div>
-                        </div>
-                        <div class="rule">
-                            <div class="rule-header">
-                                Hold
-                            </div>
-                            <div>
-                                Block ATKs with Grabbed enemy as a Shield.
-                            </div>
-                        </div>
-                        <div class="rule">
-                            <div class="rule-header">
-                                Toss
-                            </div>
-                            <div>
-                                Throw Grabbed enemy [C] yds, leaving them Prone.
+                                = [Perception]. Default DEF score. No roll. No AP spent.
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="rule">
                     <div class="rule-header">
-                        Reload
+                        Health (HP)
                     </div>
                     <div>
-                        Replace ammunition in a Ranged weapon.
+                        = [C x 2]. HP is temporarily reduced when you take DMG. Go Unconscious at 0 HP and die at [-C] HP.
+                        <div class="rule">
+                            <div class="rule-header">
+                                Bleeding
+                            </div>
+                            <div>
+                                Starts when DMG drops you to [HP / 2]. 1 DMG per minute. Roll [C vs DMG] once per minute to stop Bleeding naturally. Roll [Medicine(First-Aid) vs DMG] to stop Bleeding with a bandage.
+                            </div>
+                        </div>
+                        <div class="rule">
+                            <div class="rule-header">
+                                Recovery
+                            </div>
+                            <div>
+                                Roll [C vs DMG] once per day to heal 1HP. On a Fail, take 1 DMG from infection.
+                            </div>
+                        </div>
+                        <div class="rule">
+                            <div class="rule-header">
+                                Death
+                            </div>
+                            <div>
+                                Make a new Character with bonus XP = [old Total XP / 2].
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rule">
+                        <div class="rule-header">
+                    Damage (DMG)
+                    </div>
+                    <div>
+                        ATKs do DMG to HP = [Weapon DMG + Success]. DMG adds Pain penalties to all rolls and Speed. If one ATK does [DMG &gt C], you fall Prone.
+                        <div class="rule">
+                            <div class="rule-header">
+                                Armor (DR)
+                            </div>
+                            <div>
+                                DR reduces DMG. -1 DR if [DMG &gt DR].
+                            </div>
+                        </div>
+                        <div class="rule">
+                            <div class="rule-header">
+                                Fire (FDMG)
+                            </div>
+                            <div>
+                                When you take FDMG, 1FDMG is permanent. Only Fire-Resistant (FR) Armor reduces FDMG.
+                            </div>
+                        </div>
+                        <div class="rule">
+                            <div class="rule-header">
+                                Pain
+                            </div>
+                            <div>
+                                -1 to all rolls and Speed.
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="rule">
                     <div class="rule-header">
-                        Shove
+                    Vehicles
                     </div>
-                    <div>
-                        Roll [MATK vs C] to push an enemy [C] yds away. 0DMG.
+                    Roll [Drive(Ram) vs Drive(Stunt)] to hit an enemy vehicle. If [loser’s DR &lt= winner’s DR], or if a vehicle takes [DMG &gt DR], the vehicle gets a Condition. 0 DR disables a vehicle. A Botch is a Wreck.
+                    <div class="rule">
+                        <div class="rule-header">
+                            Conditions
+                        </div>
+                        <div>
+                            -1 DR and -1 Handling. Roll [Drive 9#] to maintain control upon getting a Condition, otherwise the vehicle Wrecks.
+                        </div>
                     </div>
-                </div>
-                <div class="rule">
-                    <div class="rule-header">
-                        Trip
+                    <div class="rule">
+                        <div class="rule-header">
+                            Occupants
+                        </div>
+                        <div>
+                            Passengers in a moving vehicle are Unstable. A vehicle provides Cover from RATKs with its DR.
+                        </div>
                     </div>
-                    <div>
-                        Roll [MATK vs A] to knock an enemy Prone. 0DMG.
+                    <div class="rule">
+                        <div class="rule-header">
+                            Pedestrians
+                        </div>
+                        <div>
+                            Hitting a pedestrian does DMG = [vehicle DR]. -1 DR after hitting pedestrians = [vehicle DR].
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Tires
+                        </div>
+                        <div>
+                            Roll [-3 ATK vs Drive(Stunt)] to destroy a tire. If the tire is destroyed, the driver must roll [Drive 9#] or Wreck. If a front tire gets destroyed, the vehicle Wrecks automatically.
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Wreck
+                        </div>
+                        <div>
+                            The vehicle comes to a violent stop suddenly this rnd. Occupants take [d6 DMG per 30yds of Speed] and are ejected from the vehicle, unless they are wearing seat belts, in which case the DMG is halved and they remain in their seats.
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Burning
+                                </div>
+                                <div>
+                                    If the Vehicle is at 0DR, it bursts into flames doing 1FDMG per rnd to all Occupants. It continues to burn for 1 minute per gallon of Fuel.
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div id="social-maneuvers">
-                <div class="section-title">
-                    Social
-                </div>
-                <div class="rule">
-                    <div class="rule-header">
-                        Distract
-                    </div>
-                    <div>
-                        Roll [Perform(Distract) vs Perception]. Stun target for 1rnd.
-                    </div>
-                </div>
-                <div class="rule">
-                    <div class="rule-header">
-                        Encourage
-                    </div>
-                    <div>
-                        Roll [Leadership vs groups’ total D scores]. The group gets a bonus = [your D] for one specific roll each. A Botch is -1 to all rolls.
-                    </div>
-                </div>
-                <div class="rule">
-                    <div class="rule-header">
-                        Interrogate
-                    </div>
-                    <div>
-                        Roll [Socialize vs D] to get information out of a subject who does not want to help, but without resorting to violence. Each roll takes d6mins of conversation.<br>If the interrogator Succeeds, the subject gives up a fact (wittingly or unwittingly). If the subject Succeeds, they become hardened against further questioning, imposing a -1 penalty on subsequent attempts. After Fails = [D], the interrogator gives up or the subject cracks and tells everything they know.
-                        <div class="rule">
-                            <div class="rule-header">
-                                Torture
-                            </div>
-                            <div>
-                                Roll [Medicine vs prisoner’s C] once per hour to cause a prisoner d6 Pain to soften the prisoner’s resolve without killing them. Failure does d6 DMG to the prisoner. Roll [D vs D] at the end of each hour (Pain penalty applies). Failure causes -1 Psyche loss. At 0 Psyche, either the torturer cannot do it anymore and gives up, or the prisoner is broken and can be controlled with Leadership or Tame until freed.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="rule">
-                    <div class="rule-header">
-                        Negotiate
-                    </div>
-                    <div>
-                        If opposed parties are willing to talk out their differences, each side start with a list of negotiable desires.<br>Roll [Socialize vs Socialize] once per desire. Attitude and situational modifiers should be applied by the GN. Success means you get your desire and the opposed negotiator concedes. Either side can choose to concede a desire without rolling.<br>If one side accumulates more than double the concessions of the other, the losing negotiator will feel cheated and end the negotiations. Some desires may be non-negotiable.
-                    </div>
-                </div>
-                <div class="rule">
-                    <div class="rule-header">
-                        Recruit
-                    </div>
-                    <div>
-                        Roll [Leadership vs D] to convince someone to join your side. If they are someone’s follower, roll [Leadership vs Leadership]. Attitude and situational modifiers should be applied by the GN.
-                    </div>
-                </div>
-                <div class="rule">
-                    <div class="rule-header">
-                        Taunt
-                    </div>
-                    <div>
-                        Roll [Leadership vs D]. Provoke the enemy into exclusively attacking you. The degree of Success is a penalty to the loser’s next roll. The enemy is Stunned for 1rnd if [penalty > enemy’s D].
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div id="situations-section" class="chapter">
-            <div class="section-title">
-                SITUATIONS
+            <div id="maneuvers-section" class="chapter">
+                <div class="section-title">
+                    MANEUVERS
+                </div>
+                <div id="defensive-maneuvers">
+                    <div class="rule-header">
+                        Defensive
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Block
+                        </div>
+                        <div>
+                            Roll [Melee vs MATK or RATK (if you have a Shield)] for DEF.
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Dodge
+                        </div>
+                        <div>
+                            Roll [Acrobatics vs MATK or RATK (Throw)] for DEF.
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Duck
+                                </div>
+                                <div>
+                                    Dodge behind Cover. Material’s DR reduces DMG.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Full Defense
+                        </div>
+                        <div>
+                            Forego all ATKs on your turn to add your [Reflex] to each of your Block and Dodge rolls until your next turn.
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Hide
+                        </div>
+                        <div>
+                            Roll [Stealth vs Perception] to gain Concealment.
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Protect
+                        </div>
+                        <div>
+                            Become the new target of an ATK targeting someone within 1yd of you. You may still Block as normal, but you cannot Dodge the ATK.
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Run
+                        </div>
+                        <div>
+                            Spend all of your Actions on movement. Each move is [Speed x4].
+                        </div>
+                    </div>
+                </div>
+                <div id="offensive-maneuvers">
+                    <div class="section-title">
+                        Offensive
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Aim
+                        </div>
+                        <div>
+                            Hold your weapon on target and spend 1AP each rnd for +1 ATK, up to 3AP over 3 or more rnds to get +3 ATK. Defenseless while Aiming.
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Called Shot
+                        </div>
+                        <div>
+                            ATK targeting the Head or Limbs. Head ATKs are at -3, do [DMG x 2], and Stun for 1rnd. Limb ATKs are at -1, do [DMG / 2], and cause the enemy to drop a held item (Arms) or be knocked Prone (Legs).
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Disarm
+                        </div>
+                        <div>
+                            Roll [MATK vs Melee (+[C] if the weapon is used two-handed)]. The weapon flies d6yds. Attacker gets the weapon if they are Unarmed.
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Dual-Wield
+                        </div>
+                        <div>
+                            Once per rnd, you may roll ATK or Block for both weapons at a penalty [-1 Primary, -3 Off-hand] for 1AP. Take the best weapon roll.
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Grab
+                        </div>
+                        <div>
+                            0DMG MATK to render an enemy Defenseless. Spend 1AP per rnd to retain Grab. Roll [(Acrobatics or Melee) vs Grab] to escape.
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Attack
+                                </div>
+                                <div>
+                                    Make an ATK against a Grabbed enemy.
+                                </div>
+                            </div>
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Hold
+                                </div>
+                                <div>
+                                    Block ATKs with Grabbed enemy as a Shield.
+                                </div>
+                            </div>
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Toss
+                                </div>
+                                <div>
+                                    Throw Grabbed enemy [C] yds, leaving them Prone.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Reload
+                        </div>
+                        <div>
+                            Replace ammunition in a Ranged weapon.
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Shove
+                        </div>
+                        <div>
+                            Roll [MATK vs C] to push an enemy [C] yds away. 0DMG.
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Trip
+                        </div>
+                        <div>
+                            Roll [MATK vs A] to knock an enemy Prone. 0DMG.
+                        </div>
+                    </div>
+                </div>
+                <div id="social-maneuvers">
+                    <div class="section-title">
+                        Social
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Distract
+                        </div>
+                        <div>
+                            Roll [Perform(Distract) vs Perception]. Stun target for 1rnd.
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Encourage
+                        </div>
+                        <div>
+                            Roll [Leadership vs groups’ total D scores]. The group gets a bonus = [your D] for one specific roll each. A Botch is -1 to all rolls.
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Interrogate
+                        </div>
+                        <div>
+                            Roll [Socialize vs D] to get information out of a subject who does not want to help, but without resorting to violence. Each roll takes d6mins of conversation.<br>If the interrogator Succeeds, the subject gives up a fact (wittingly or unwittingly). If the subject Succeeds, they become hardened against further questioning, imposing a -1 penalty on subsequent attempts. After Fails = [D], the interrogator gives up or the subject cracks and tells everything they know.
+                            <div class="rule">
+                                <div class="rule-header">
+                                    Torture
+                                </div>
+                                <div>
+                                    Roll [Medicine vs prisoner’s C] once per hour to cause a prisoner d6 Pain to soften the prisoner’s resolve without killing them. Failure does d6 DMG to the prisoner. Roll [D vs D] at the end of each hour (Pain penalty applies). Failure causes -1 Psyche loss. At 0 Psyche, either the torturer cannot do it anymore and gives up, or the prisoner is broken and can be controlled with Leadership or Tame until freed.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Negotiate
+                        </div>
+                        <div>
+                            If opposed parties are willing to talk out their differences, each side start with a list of negotiable desires.<br>Roll [Socialize vs Socialize] once per desire. Attitude and situational modifiers should be applied by the GN. Success means you get your desire and the opposed negotiator concedes. Either side can choose to concede a desire without rolling.<br>If one side accumulates more than double the concessions of the other, the losing negotiator will feel cheated and end the negotiations. Some desires may be non-negotiable.
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Recruit
+                        </div>
+                        <div>
+                            Roll [Leadership vs D] to convince someone to join your side. If they are someone’s follower, roll [Leadership vs Leadership]. Attitude and situational modifiers should be applied by the GN.
+                        </div>
+                    </div>
+                    <div class="rule">
+                        <div class="rule-header">
+                            Taunt
+                        </div>
+                        <div>
+                            Roll [Leadership vs D]. Provoke the enemy into exclusively attacking you. The degree of Success is a penalty to the loser’s next roll. The enemy is Stunned for 1rnd if [penalty > enemy’s D].
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="bleeding-rule" class="rule">
-                <div class="rule-header">
-                    Bleeding
+
+            <div id="situations-section" class="chapter">
+                <div class="section-title">
+                    SITUATIONS
                 </div>
-                <div id="bleeding-notes">
-                    Starts when DMG drops you to [HP / 2]. 1 DMG per minute. Roll [C vs DMG] once per minute to stop Bleeding naturally. Roll [Medicine(First-Aid) vs DMG] to stop Bleeding with a bandage.
+                <div id="bleeding-rule" class="rule">
+                    <div class="rule-header">
+                        Bleeding
+                    </div>
+                    <div id="bleeding-notes">
+                        Starts when DMG drops you to [HP / 2]. 1 DMG per minute. Roll [C vs DMG] once per minute to stop Bleeding naturally. Roll [Medicine(First-Aid) vs DMG] to stop Bleeding with a bandage.
+                    </div>
+                </div>
+                <div id="burning-rule" class="rule">
+                    <div class="rule-header">
+                        Burning
+                    </div>
+                    <div id="burning-notes">
+                        1 FDMG per rnd. Roll [Demeanor 6#] to stop, drop, and roll.
+                    </div>
+                </div>
+                <div id="chase-rule" class="rule">
+                    <div class="rule-header">
+                        Chase
+                    </div>
+                    <div id="chase-notes">
+                        Roll opposed [(Athletics, Acrobatics, Tame, or Drive) + Speed] each rnd. Chase ends when one gets 3 Successes over the other.
+                    </div>
+                </div>
+                <div id="concealment-rule" class="rule">
+                    <div class="rule-header">
+                        Concealment
+                    </div>
+                    <div id="concealment-notes">
+                        You cannot be targeted directly. Blasts are unaffected. Enemies are Defenseless against ATKs from Concealment.
+                    </div>
+                </div>
+                <div id="cover-rule" class="rule">
+                    <div class="rule-header">
+                        Cover
+                    </div>
+                    <div id="cover-notes">
+                        Material DR reduces DMG.
+                    </div>
+                </div>
+                <div id="defenseless-rule" class="rule">
+                    <div class="rule-header">
+                        Defenseless
+                    </div>
+                    <div id="defenseless-notes">
+                        Use Reflex for DEF.
+                    </div>
+                </div>
+                <div id="falling-rule" class="rule">
+                    <div class="rule-header">
+                        Falling
+                    </div>
+                    <div id="falling-notes">
+                        1DMG per 2yds. Roll [Acrobatics # = yds] to halve Falling DMG.
+                    </div>
+                </div>
+                <div id="friendlyfire-rule" class="rule">
+                    <div class="rule-header">
+                        Friendly Fire
+                    </div>
+                    <div id="friendlyfire-notes">
+                        -3 RATK at a target next to an ally. Failing requires you to roll [d6 RATK (no modifiers) vs ally’s Reflex].
+                    </div>
+                </div>
+                <div id="grabbed-rule" class="rule">
+                    <div class="rule-header">
+                        Grabbed
+                    </div>
+                    <div id="grabbed-notes">
+                        Defenseless. Roll [Acrobatics or Melee vs Grab] to escape.
+                    </div>
+                </div>
+                <div id="needs-rule" class="rule">
+                    <div class="rule-header">
+                        Needs
+                    </div>
+                    <div id="needs-notes">
+                        1 Pain for each deprivation of a Need (see HAZARDS).
+                    </div>
+                </div>
+                <div id="pain-rule" class="rule">
+                    <div class="rule-header">
+                        Pain
+                    </div>
+                    <div id="pain-notes">
+                        -1 per Pain to all rolls and Speed. Pain fades as DMG heals. Some Pain fades based on the source.
+                    </div>
+                </div>
+                <div id="prone-rule" class="rule">
+                    <div class="rule-header">
+                        Prone
+                    </div>
+                    <div id="prone-notes">
+                        +1 RATK. +3 Stealth. Speed 1yd.
+                    </div>
+                </div>
+                <div id="range-rule" class="rule">
+                    <div class="rule-header">
+                        Range (RNG)
+                    </div>
+                    <div id="range-notes">
+                        RATKs take a -1 penalty per extra RNG. Melee weapons take a penalty against longer Melee weapons = [RNG - enemy RNG].
+                    </div>
+                </div>
+                <div id="reflex-rule" class="rule">
+                    <div class="rule-header">
+                        Reflex
+                    </div>
+                    <div id="reflex-notes">
+                        = [Perception]. Default DEF if you are Defenseless or out of AP. Reflex is never rolled. It is a static Difficulty for enemy ATKs.
+                    </div>
+                </div>
+                <div id="stun-rule" class="rule">
+                    <div class="rule-header">
+                        Stun
+                    </div>
+                    <div id="stun-notes">
+                        Defenseless and cannot take actions. Prone if [Stunned &gt 1rnd].
+                    </div>
+                </div>
+                <div id="unarmed-rule" class="rule">
+                    <div class="rule-header">
+                        Unarmed
+                    </div>
+                    <div id="unarmed-notes">
+                        DMG = [MATK - DEF] up to Melee score. DR is not depleted.
+                    </div>
+                </div>
+                <div id="unconscious-rule" class="rule">
+                    <div class="rule-header">
+                        Unconscious
+                    </div>
+                    <div id="unconscious-notes">
+                        Unaware and unable to take actions. 0 DEF.
+                    </div>
+                </div>
+                <div id="unstable-rule" class="rule">
+                    <div class="rule-header">
+                        Unstable
+                    </div>
+                    <div id="unstable-notes">
+                        -3 penalty to physical rolls. -3 to RATKs at or from you.
+                    </div>
+                </div>
+                <div id="visibility-rule" class="rule">
+                    <div class="rule-header">
+                        Visibility
+                    </div>
+                    <div id="visibility-notes">
+                        -1 to -6 (Blind) to sight-based rolls, including ATK and DEF.
+                    </div>
                 </div>
             </div>
-            <div id="burning-rule" class="rule">
-                <div class="rule-header">
-                    Burning
-                </div>
-                <div id="burning-notes">
-                    1 FDMG per rnd. Roll [Demeanor 6#] to stop, drop, and roll.
-                </div>
-            </div>
-            <div id="chase-rule" class="rule">
-                <div class="rule-header">
-                    Chase
-                </div>
-                <div id="chase-notes">
-                    Roll opposed [(Athletics, Acrobatics, Tame, or Drive) + Speed] each rnd. Chase ends when one gets 3 Successes over the other.
-                </div>
-            </div>
-            <div id="concealment-rule" class="rule">
-                <div class="rule-header">
-                    Concealment
-                </div>
-                <div id="concealment-notes">
-                    You cannot be targeted directly. Blasts are unaffected. Enemies are Defenseless against ATKs from Concealment.
-                </div>
-            </div>
-            <div id="cover-rule" class="rule">
-                <div class="rule-header">
-                    Cover
-                </div>
-                <div id="cover-notes">
-                    Material DR reduces DMG.
-                </div>
-            </div>
-            <div id="defenseless-rule" class="rule">
-                <div class="rule-header">
-                    Defenseless
-                </div>
-                <div id="defenseless-notes">
-                    Use Reflex for DEF.
-                </div>
-            </div>
-            <div id="falling-rule" class="rule">
-                <div class="rule-header">
-                    Falling
-                </div>
-                <div id="falling-notes">
-                    1DMG per 2yds. Roll [Acrobatics # = yds] to halve Falling DMG.
-                </div>
-            </div>
-            <div id="friendlyfire-rule" class="rule">
-                <div class="rule-header">
-                    Friendly Fire
-                </div>
-                <div id="friendlyfire-notes">
-                    -3 RATK at a target next to an ally. Failing requires you to roll [d6 RATK (no modifiers) vs ally’s Reflex].
-                </div>
-            </div>
-            <div id="grabbed-rule" class="rule">
-                <div class="rule-header">
-                    Grabbed
-                </div>
-                <div id="grabbed-notes">
-                    Defenseless. Roll [Acrobatics or Melee vs Grab] to escape.
-                </div>
-            </div>
-            <div id="needs-rule" class="rule">
-                <div class="rule-header">
-                    Needs
-                </div>
-                <div id="needs-notes">
-                    1 Pain for each deprivation of a Need (see HAZARDS).
-                </div>
-            </div>
-            <div id="pain-rule" class="rule">
-                <div class="rule-header">
-                    Pain
-                </div>
-                <div id="pain-notes">
-                    -1 per Pain to all rolls and Speed. Pain fades as DMG heals. Some Pain fades based on the source.
-                </div>
-            </div>
-            <div id="prone-rule" class="rule">
-                <div class="rule-header">
-                    Prone
-                </div>
-                <div id="prone-notes">
-                    +1 RATK. +3 Stealth. Speed 1yd.
-                </div>
-            </div>
-            <div id="range-rule" class="rule">
-                <div class="rule-header">
-                    Range (RNG)
-                </div>
-                <div id="range-notes">
-                    RATKs take a -1 penalty per extra RNG. Melee weapons take a penalty against longer Melee weapons = [RNG - enemy RNG].
-                </div>
-            </div>
-            <div id="reflex-rule" class="rule">
-                <div class="rule-header">
-                    Reflex
-                </div>
-                <div id="reflex-notes">
-                    = [Perception]. Default DEF if you are Defenseless or out of AP. Reflex is never rolled. It is a static Difficulty for enemy ATKs.
-                </div>
-            </div>
-            <div id="stun-rule" class="rule">
-                <div class="rule-header">
-                    Stun
-                </div>
-                <div id="stun-notes">
-                    Defenseless and cannot take actions. Prone if [Stunned &gt 1rnd].
-                </div>
-            </div>
-            <div id="unarmed-rule" class="rule">
-                <div class="rule-header">
-                    Unarmed
-                </div>
-                <div id="unarmed-notes">
-                    DMG = [MATK - DEF] up to Melee score. DR is not depleted.
-                </div>
-            </div>
-            <div id="unconscious-rule" class="rule">
-                <div class="rule-header">
-                    Unconscious
-                </div>
-                <div id="unconscious-notes">
-                    Unaware and unable to take actions. 0 DEF.
-                </div>
-            </div>
-            <div id="unstable-rule" class="rule">
-                <div class="rule-header">
-                    Unstable
-                </div>
-                <div id="unstable-notes">
-                    -3 penalty to physical rolls. -3 to RATKs at or from you.
-                </div>
-            </div>
-            <div id="visibility-rule" class="rule">
-                <div class="rule-header">
-                    Visibility
-                </div>
-                <div id="visibility-notes">
-                    -1 to -6 (Blind) to sight-based rolls, including ATK and DEF.
-                </div>
-            </div>
-        </div>
+            
+        </main>
 
     </body>
+
 </html>
