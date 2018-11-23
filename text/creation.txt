@@ -1,0 +1,41 @@
+CREATION
+STEP 1: DESCRIPTION
+Choose a name, height, weight, skin color, hair color, sex, and age.</div>
+
+STEP 2: TRAITS AND INSTINCTS
+Distribute 12 Trait points among the four Traits:
+Agility [A], Brains [B], Constitution [C], and Demeanor [D].
+Normal human Trait scores range from 1 to 6.
+Each Trait has one associated Instinct:
+Stealth = [A]
+Perception = [B]
+Athletics = [C]
+Socialize = [D]
+
+STEP 3: SKILLS
+Distribute [B x 6] Skill points among the twelve Skills.
+Maximum Skill rating = [parent Trait]. Skill Specialties = [parent Skill].
+Agility Skills: Acrobatics, Larceny, Ranged
+Brains Skills: Medicine, Science, Survival
+Constitution Skills: Build, Drive, Melee
+Demeanor Skills: Leadership, Perform, Tame
+
+STEP 4: PROPERTIES
+Calculate your Properties. Always round down.
+Psyche = [D] dots from Crazy
+Health = [C x 2]
+Pain = 0
+Actions = [A / 2]
+Luck = [D] max
+Speed = [A + C] yds
+XP = [B x 6]
+Defenses:
+Reflex = [Perception]
+Dodge = [Acrobatics(Dodge)]
+Block = [Melee(Block)]
+
+STEP 5: ABILITIES
+Buy Abilities with XP [B x 6] or save some or all of it for later.
+
+STEP 6: GEAR
+Equip your Character with Gear using your GN’s Starting Gear rules.

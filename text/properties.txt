@@ -1,0 +1,46 @@
+PROPERTIES
+
+Properties derive their scores from Traits, Instincts, or Skills.
+
+Agility Properties
+
+Actions (AP)
+= [A / 2]. Taking an action costs a number of Action Points, usually only 1AP. AP refills at the beginning of your next turn.
+
+Dodge
+= [Acrobatics(Dodge)]. This is your skillfullness at getting out of harm’s way. Dodge costs 1AP to use.
+
+Speed
+= [A + C]. Spend 1AP to move [Speed] yds. Spend all AP each rnd on movement to Run with [Speed x 4] for up to [C x 5] mins. March at [Speed / 2] mph for up to [C x 2] hrs.
+
+Brains Properties
+
+Reflex
+= [Perception]. This is the default Difficulty that an enemy must beat to hit you if you do not or cannot try to Block or Dodge the attack.
+
+Experience (XP)
+= [B per session]. XP is earned once per game session. The GN may give bonus XP. Spend XP to buy Abilities.
+
+Constitution Properties
+
+Block
+= [Melee(Block)]. This is your skillfullness at deflecting attacks with weapons. Block costs 1AP to use.
+
+Health (HP)
+= [C x 2]. This is the amount of DMG you can take. Go Unconscious at 0 HP and die at [-C] HP. HP is recovered by 1 per day with a [C vs DMG] roll.
+
+Demeanor Properties
+
+Psyche
+= [D]. This is a rough measure of your mental health on a sliding scale from Crazy to Sane. Fill in the dot = [your Demeanor] counting from Crazy. Especially relaxing or inspiring things might move the dot one step towards Sane. Extremely traumatic things move the dot one step towards Crazy.</p>
+During the game session, Players and the GN should make a note when something happens that might alter the Character’s Psyche. After the game session, they should discuss the events that occurred and whether they were personally relevant enough to constitute a change in Psyche for that Character at that time.</p>
+Upon losing your last dot of Psyche, the GN takes control of your Character for d6hrs of in-game time. The GN can decide whether or not you remember what happens during this period. Afterward, the Character starts back at 1 Psyche.</p>
+
+Luck
+= [D]. Luck rolls [d6 + current Luck points] are made to determine your fate in matters of pure chance. Luck points refill at dawn each day. You may spend Luck once per round in dramatic moments to:
+Take a re-roll with a +6 bonus.
+Get +1AP.
+Give a Luck point to a Comrade.
+
+Comrades
+These are close allies for whom you would risk much to protect. List your Comrades in order of importance to you if you want to track the priority of your relationships in your Team.

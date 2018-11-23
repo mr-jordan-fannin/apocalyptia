@@ -69,7 +69,7 @@ const skills = {
     "Build": {
         desc: "",
         "Customize": "",
-        "Repair: ""
+        "Repair": ""
     },
     "Drive": {
         desc: "",
@@ -80,31 +80,48 @@ const skills = {
         desc: "",
         "Disable": "",
         "Steal": ""
+    },
+    "Leadership": {
+        desc: "",
+        "Encourage": "",
+        "Order": ""
+    },
+    "Medicine": {
+        desc: "",
+        "First-Aid": "",
+        "Surgery": ""
+    },
+    "Melee": {
+        desc: "",
+        "Block": "",
+        "Strike": ""
+    },
+    "Perform": {
+        desc: "",
+        "Deceive": "",
+        "Distract": ""
+    },
+    "Ranged": {
+        desc: "",
+        "Shoot": "",
+        "Throw": ""
+    },
+    "Science": {
+        desc: "",
+        "Chemistry": "",
+        "Technology": ""
+    },
+    "Survival": {
+        desc: "",
+        "Forage": "",
+        "Navigate": ""
+    },
+    "Tame": {
+        desc: "",
+        "Command": "",
+        "Train": ""
     }
-leadership
-    encourage
-    order
-medicine
-    first-aid
-    surgery
-melee
-    block
-    strike
-perform
-    deceive
-    distract
-ranged
-    shoot
-    throw
-science
-    chemistry
-    technology
-survival
-    forage
-    navigate
-tame
-    command
-    train
+}
 
 
 // PROPERTIES
@@ -276,21 +293,21 @@ const abilities = {
 
 
 // COMBAT
-attack
-    matk
-    ratk
-damage
-    recovery
-    death
-defense
-    reflex
-movement
-vehicle combat
-    conditions
-    occupants
-    pedestrians
-    tires
-    wreck
+// attack
+//     matk
+//     ratk
+// damage
+//     recovery
+//     death
+// defense
+//     reflex
+// movement
+// vehicle combat
+//     conditions
+//     occupants
+//     pedestrians
+//     tires
+//     wreck
 
 
 // MANEUVER
@@ -345,140 +362,140 @@ const situations = {
 
 
 // GEAR
-gear
-    size
+// gear
+//     size
 
-armor attributes
-    damage reduction
-    camo
-    cold-resistance
-    fire-resistance
+// armor attributes
+//     damage reduction
+//     camo
+//     cold-resistance
+//     fire-resistance
 
-weapon attributes
-    1-handed
-    2-handed
-    auto
-    blast
-    fdmg
-    pierce
-    chop
-    sawn-off
+// weapon attributes
+//     1-handed
+//     2-handed
+//     auto
+//     blast
+//     fdmg
+//     pierce
+//     chop
+//     sawn-off
 
-armor
-    athletic pads
-    ghillie suit
-    kevlar vest
-    nbc suit
-    riot armor
-    thick clothing
+// armor
+//     athletic pads
+//     ghillie suit
+//     kevlar vest
+//     nbc suit
+//     riot armor
+//     thick clothing
 
-melee weapons
-    ax
-    baseball bat
-    brass knuckles
-    crowbar
-    hammer
-    hatchet
-    knife
-    machete
-    shield
-    sledgehammer
-    spear
-    staff
+// melee weapons
+//     ax
+//     baseball bat
+//     brass knuckles
+//     crowbar
+//     hammer
+//     hatchet
+//     knife
+//     machete
+//     shield
+//     sledgehammer
+//     spear
+//     staff
 
-ranged weapons
-    assault rifle
-    battle rifle
-    combat pistol
-    compound bow
-    crossbow
-    double-barrel shotgun
-    hunting rifle
-    pump shotgun
-    revolver
-    submachine gun
-    target pistol
-    target rifle
+// ranged weapons
+//     assault rifle
+//     battle rifle
+//     combat pistol
+//     compound bow
+//     crossbow
+//     double-barrel shotgun
+//     hunting rifle
+//     pump shotgun
+//     revolver
+//     submachine gun
+//     target pistol
+//     target rifle
 
-special ammo
-    armor piercing
-    broadhead arrow
-    buckshot
-    hollow point
-    match
-    slug
+// special ammo
+//     armor piercing
+//     broadhead arrow
+//     buckshot
+//     hollow point
+//     match
+//     slug
 
-bombs
-    flashbang
-    frag
-    molotov
-    smoke
-    teargas
-    thermite
+// bombs
+//     flashbang
+//     frag
+//     molotov
+//     smoke
+//     teargas
+//     thermite
 
-drugs
-    alcohol
-    antibiotic
-    hallucinogen
-    painkiller
-    sedative
-    stimulant
+// drugs
+//     alcohol
+//     antibiotic
+//     hallucinogen
+//     painkiller
+//     sedative
+//     stimulant
 
-medical
-    bandage
-    crutch
-    surgery kit
+// medical
+//     bandage
+//     crutch
+//     surgery kit
 
-vehicles
-    cargo
-    fuel
-    handling
-    mpg
-    motorcycle
-    pickup
-    sedan
-    semi-truck
-    suv
-    wagon
+// vehicles
+//     cargo
+//     fuel
+//     handling
+//     mpg
+//     motorcycle
+//     pickup
+//     sedan
+//     semi-truck
+//     suv
+//     wagon
 
 
 // ENVIRONMENT
-biome
-    desert
-    forest
-    mountain
-    plains
-    swamp
-    tundra
+// biome
+//     desert
+//     forest
+//     mountain
+//     plains
+//     swamp
+//     tundra
 
-weather
-    blizzard
-    dust storm
-    fog
-    heatwave
-    thunderstorm
-    wildfire
+// weather
+//     blizzard
+//     dust storm
+//     fog
+//     heatwave
+//     thunderstorm
+//     wildfire
 
-material
-    brick
-    concrete
-    drywall
-    glass
-    hardwood
-    plywood
-    sheet metal
-    steel
+// material
+//     brick
+//     concrete
+//     drywall
+//     glass
+//     hardwood
+//     plywood
+//     sheet metal
+//     steel
 
-traps
-    deadfall
-    pendulum
-    pit
-    snare
-    spring gun
-    stakes
+// traps
+//     deadfall
+//     pendulum
+//     pit
+//     snare
+//     spring gun
+//     stakes
 
 
 // EXTRAS
-extra
-    dog
-    horse
+// extra
+//     dog
+//     horse
